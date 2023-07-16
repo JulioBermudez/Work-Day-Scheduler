@@ -3,70 +3,129 @@
 // in the html.
 
 $(function () {
-  var currentTime = "";
-  setInterval(function(){
+  var currentTime = dayjs().format("MMMM D YYYY, HH:mm");
+  //Current date time print on header paragraph
+  setInterval(function () {
     for (let i = 0; i < 1; i++) {
-      currentTime = dayjs().format("HH:mm:ss");   
-      console.log(currentTime);
+      $("#currentDay").text(dayjs().format("dddd, MMMM D YYYY, HH:mm:ss"));
     }
-  },1000)
-  
+  }, 1000);
+
+  var currenHour = dayjs().hour();
+  console.log(dayjs().hour());
+
+  $("textarea").each(function () {
+    var textAreaTime = parseInt($(this).attr("id"));
+    console.log(textAreaTime);
+    if (currenHour < textAreaTime) {
+      $(this).addClass("past");
+    } else if (currenHour > textAreaTime) {
+      $(this).addClass("future");
+    } else {
+      $(this).addClass("present");
+    }
+  });
+
+  //Hour 9
+  var newDataHour9 = "";
+
   $("#hour-9")
     .children("button")
     .click(function () {
-      var timeHour9 = dayjs().format("HH:mm:ss");
       var txtHour9Val = $("#hour-9").children("textarea").val();
       if (txtHour9Val !== null) {
-        var newDataHour9 = {
-          text: txtHour9Val,
-          time: timeHour9,
-        };
-        localStorage.setItem(timeHour9,
-          JSON.stringify(newDataHour9)
-        );      
+        newDataHour9 = { text: txtHour9Val };
+        localStorage.setItem("9", JSON.stringify(newDataHour9));
+        console.log(newDataHour9.text);
       }
-      
-
-
     });
+
+  //Hour 10
   $("#hour-10")
     .children("button")
     .click(function () {
-      var txtHour10Val = $("#hour-10").children("textarea").val();
-      var timeHour10 = dayjs().format("MMMM D YYYY, HH:mm a");
-      if (txtHour10Val !== null) {
-        var newDataHour10 = {
-          text: txtHour10Val,
-          time: timeHour10,
-        };
-        localStorage.setItem(
-          "hour-10 " + timeHour10,
-          JSON.stringify(newDataHour10)
-        );
+      var txtHour9Val = $("#hour-10").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("10", JSON.stringify(newDataHour9));
       }
     });
+  //Hour 11
   $("#hour-11")
     .children("button")
     .click(function () {
-      var txtHour11Val = $("#hour-11").children("textarea").val();
-      if (txtHour11Val !== null) {
-        var newDataHour11 = {
-          text: txtHour11Val,
-        };
+      var txtHour9Val = $("#hour-11").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("11", JSON.stringify(newDataHour9));
       }
-      localStorage.setItem("hour-11", JSON.stringify(newDataHour11));
     });
+  //Hour 12
   $("#hour-12")
     .children("button")
     .click(function () {
-      var txtHour12Val = $("#hour-12").children("textarea").val();
-      if (txtHour12Val !== null) {
-        var newdataHour12 = {
-          text: txtHour12Val,
-        };
+      var txtHour9Val = $("#hour-12").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("12", JSON.stringify(newDataHour9));
       }
-      localStorage.setItem("hour-12", JSON.stringify(newdataHour12));
     });
+  //Hour 1
+  $("#hour-1")
+    .children("button")
+    .click(function () {
+      var txtHour9Val = $("#hour-1").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("13", JSON.stringify(newDataHour9));
+      }
+    });
+  //Hour 2
+  $("#hour-2")
+    .children("button")
+    .click(function () {
+      var txtHour9Val = $("#hour-2").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("14", JSON.stringify(newDataHour9));
+      }
+    });
+  //Hour 3
+  $("#hour-3")
+    .children("button")
+    .click(function () {
+      var txtHour9Val = $("#hour-3").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("15", JSON.stringify(newDataHour9));
+      }
+    });
+  // Hour 4
+  $("#hour-4")
+    .children("button")
+    .click(function () {
+      var txtHour9Val = $("#hour-4").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("16", JSON.stringify(newDataHour9));
+      }
+    });
+  // Hour 5
+  $("#hour-5")
+    .children("button")
+    .click(function () {
+      var txtHour9Val = $("#hour-5").children("textarea").val();
+      if (txtHour9Val !== null) {
+        var newDataHour9 = { text: txtHour9Val, time: currentTime };
+        localStorage.setItem("17", JSON.stringify(newDataHour9));
+      }
+    });
+
+  for (let i = 0; i < localStorage.length; i++) {
+    var key = localStorage.key(i);
+    var value = JSON.parse(localStorage.getItem(key));
+    $("#" + key).val(value.text);
+  }
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
