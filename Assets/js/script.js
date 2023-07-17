@@ -8,7 +8,7 @@ $(function () {
   }, 1000);
   //When the saved button click, the textarea value 
   //is going to local storage with a key name of the hour.
-  /*-----------This is simplified version. Main version is comment below-----------*/ 
+  /*-----------This is simplified version. Main version is commented at the end-----------*/ 
   $("button").click(function () {
     for (let i = 9; i < 18; i++) {
       var txt = $("#" + i).val();
